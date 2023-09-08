@@ -3,7 +3,7 @@
 #include <stdio.h>
 /**
   *main - generate random number and print psetive, negative, 0
-  *Return : 0 return (success)
+  *Return: return 0 (success)
   */
 int main(void)
 {
