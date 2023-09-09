@@ -16,8 +16,11 @@ int main(void)
 			putchar(' ');
 			putchar((j / 10) + '0');
 			putchar((j % 10) + '0');
-			putchar(',');
-			putchar(' ');
+			if (i != 98)
+			{
+				putchar(',');
+				putchar(' ');
+			}
 		}
 	}
 	putchar('\n');
