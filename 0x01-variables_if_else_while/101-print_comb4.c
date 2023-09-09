@@ -5,40 +5,23 @@
   */
 int main(void)
 {
-	int n1 = 0;
-
-	int n2 = 1;
-
-	int n3 = 2;
-
-	int cou = 2;
-
-	int cou2 = 1;
-
-	while (n1 <= 7)
+	for (int i = 0; i <= 7; i++)
 	{
-		putchar(n1 + '0');
-		putchar(n2 + '0');
-		putchar(n3 + '0');
-		if (n1 <= 7)
+		for (int j = i + 1; j <= 8; j++)
 		{
-			putchar(',');
-			putchar(' ');
-		}
-		n3++;
-		if (n3 > 9)
-		{
-			n2++;
-			cou++;
-			n3 = cou;
-		}
-		if (n2 > 8)
-		{
-			n1++;
-			cou2++;
-			n2 = cou2;
-			n3 = cou;
+			for (int k = j + 1; k <= 9; k++)
+			{
+				putchar(i + '0');
+				putchar(j + '0');
+				putchar(k + '0');
+				if (i != 7 || j != 8 || k != 9)
+				{
+					putchar(',');
+					putchar(' ');
+				}
+			}
 		}
 	}
+	putchar('\n');
 	return (0);
 }
