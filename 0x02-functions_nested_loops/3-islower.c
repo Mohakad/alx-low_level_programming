@@ -1,6 +1,7 @@
 #include "main.h"
 /**
- *_islower - checks is lowercase c
+ *_islower - checks is lowercase
+ *@c: char check*
  *Return: 1 if is lowercase, 0 otherwise
  */
 int _islower(int c)
