@@ -10,14 +10,14 @@ int main(void)
 	f = 1;
 	s = 2;
 	n = f + s;
-	int coun;
+	int count;
 
-	coun = 3;
+	count = 3;
 	printf("%lu, ", f);
 	printf("%lu, ", s);
-	while (coun <= 98)
+	while (count <= 98)
 	{
-		if (coun == 98)
+		if (count == 98)
 		{
 			printf("%lu\n", n);
 		}
@@ -28,7 +28,7 @@ int main(void)
 		f = s;
 		s = n;
 		n = f + s;
-		coun++;
+		count++;
 	}
 	return (0);
 }
