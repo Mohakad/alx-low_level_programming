@@ -11,8 +11,6 @@ int main(void)
 
 	long int n = 3;
 
-	int count = 3;
-
 	long int sum = 0;
 
 	while (sum < 4000000)
