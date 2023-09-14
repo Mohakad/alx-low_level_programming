@@ -5,13 +5,11 @@
   */
 int main(void)
 {
-	unsigned long f, s, n;
+	unsigned long f, s, n, count;
 
 	f = 1;
 	s = 2;
 	n = f + s;
-	int count;
-
 	printf("%lu, ", f);
 	printf("%lu, ", s);
 	for (count = 3; count <= 98; count++)
