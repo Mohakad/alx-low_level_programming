@@ -10,11 +10,11 @@ int main(void)
 	f = 1;
 	s = 2;
 	n = f + s;
-	unsigned int count = 3;
+	int count;
 
 	printf("%lu, ", f);
 	printf("%lu, ", s);
-	while (count <= 98)
+	for (count = 3; count <= 98; count++)
 	{
 		if (count == 98)
 		{
@@ -27,7 +27,6 @@ int main(void)
 		f = s;
 		s = n;
 		n = f + s;
-		count++;
 	}
 	return (0);
 }
