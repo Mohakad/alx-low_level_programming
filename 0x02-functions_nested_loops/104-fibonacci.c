@@ -10,8 +10,9 @@ int main(void)
 	f = 1;
 	s = 2;
 	n = f + s;
-	int coun = 3;
+	int coun;
 
+	coun = 3;
 	printf("%lu, ", f);
 	printf("%lu, ", s);
 	while (coun <= 98)
