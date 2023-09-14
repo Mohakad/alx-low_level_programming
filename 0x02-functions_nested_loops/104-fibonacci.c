@@ -5,22 +5,22 @@
   */
 int main(void)
 {
-	unsigned long f, s, n, count;
+	long double f, s, n, count;
 
 	f = 1;
 	s = 2;
 	n = f + s;
-	printf("%lu, ", f);
-	printf("%lu, ", s);
+	printf("%1Lf, ", f);
+	printf("%1Lf, ", s);
 	for (count = 3; count <= 98; count++)
 	{
 		if (count == 98)
 		{
-			printf("%lu\n", n);
+			printf("%1Lf\n", n);
 		}
 		else
 		{
-			printf("%lu, ", n);
+			printf("%1Lf, ", n);
 		}
 		f = s;
 		s = n;
