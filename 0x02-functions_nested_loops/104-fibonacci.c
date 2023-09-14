@@ -10,9 +10,8 @@ int main(void)
 	f = 1;
 	s = 2;
 	n = f + s;
-	int count;
+	unsigned int count = 3;
 
-	count = 3;
 	printf("%lu, ", f);
 	printf("%lu, ", s);
 	while (count <= 98)
