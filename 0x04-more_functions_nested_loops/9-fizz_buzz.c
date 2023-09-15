@@ -1,7 +1,7 @@
 #include <stdio.h>
 /**
-  *main- print fizz buzz for 3 & 5 multip
-  *Retunt: 0.
+  *main - print fizz buzz for 3 & 5 multip
+  *Return: 0.
   */
 int main(void)
 {
