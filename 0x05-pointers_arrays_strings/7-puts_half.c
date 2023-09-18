@@ -13,7 +13,7 @@ void puts_half(char *str)
 		lon++;
 	h = (lon / 2);
 	if ((lon % 2) == 1)
-		h = ((lon - 1) / 2);
+		h = ((lon + 1) / 2);
 	for (a = h; str[a] != '\0'; a++)
 		_putchar(str[a]);
 	_putchar('\n');
