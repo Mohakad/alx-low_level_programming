@@ -2,34 +2,17 @@
 /**
  *_sqrt_recursion_2 -actual sqrt
  *@n :num
- *@start : start
- *@end : en
+ *@s : start
  * Return: the resulting square root
  */
-int _sqrt_recursion_2(int n, int start, int end)
+int _sqrt_recursion_2(int n, int s)
 {
-	int mid;
-
-	int square;
-
-	if (start > end)
-	{
+	if (s * s == n)
+		return (s);
+	if (s * s > n)
 		return (-1);
-	}
-	mid = (start + end) / 2;
-	square = mid * mid;
-	if (square == n)
-	{
-		return (mid);
-	}
-	else if (square > n)
-	{
-		return (_sqrt_recursion_2(n, start, mid - 1));
-	}
-	else
-	{
-		return (_sqrt_recursion_2(n, mid + 1, end));
-	}
+	return (_sqrt_recursion_2(n, s + 1));
+
 }
 /**
  * _sqrt_recursion - returns the natural square root of a number
@@ -40,5 +23,5 @@ int _sqrt_recursion(int n)
 {
 	if (n < 0)
 		return (-1);
-	return (_sqrt_recursion_2(n, 0, n));
+	return (_sqrt_recursion_2(n, 0));
 }
