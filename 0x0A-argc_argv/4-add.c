@@ -1,36 +1,56 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 /**
-*main -  prints its name
-*@argc : command no
-*@argv : command list
-*Return: 0 (success).
-*/
+ * check_num - check - string there are digit
+ * @str: array str
+ * Return: Always 0 (Success)
+ */
+int check_num(char *str)
+{
+	unsigned int count;
+
+	count = 0;
+	while (count < strlen(str))
+	{
+		if (!isdigit(str[count]))
+		{
+			return (0);
+		}
+		count++;
+	}
+	return (1);
+}
+/**
+ * main - Print the name of the program
+ * @argc: Count arguments
+ * @argv: Arguments
+ * Return: Always 0 (Success)
+ */
 int main(int argc, char *argv[])
 {
-	int i; 
+	int count;
 
-	unsigned int sum = 0;
+	int str_to_int;
 
-	if (argc > 1)
+	int sum = 0;
+
+	count = 1;
+	while (count < argc)
 	{
-		for (i = 1; i < argc; i++)
+		if (check_num(argv[count]))
 		{
-			if (isdigit(*(argv[i])))
-			{
-				if (atoi(argv[i]) > 0)
-				sum += atoi(argv[i]);
-			}
-			else
-			{
-				printf("Error\n");
-				return (1);
-			}
+			str_to_int = atoi(argv[count]);
+			sum += str_to_int;
 		}
-		printf("%d\n", sum);
+		else
+		{
+			printf("Error\n");
+			return (1);
+		}
+		count++;
 	}
-	else
-		printf("0\n");
+	printf("%d\n", sum);
 	return (0);
 }
