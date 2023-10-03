@@ -1,6 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
-#include <string.h>
+#include <stdio.h>
 #include <stddef.h>
 /**
  *str_concat - two string concatination
@@ -10,35 +10,33 @@
  */
 char *str_concat(char *s1, char *s2)
 {
-	char *dest;
+	char *con;
 
-	int ind1 = 0, ind2 = 0;
-
-	int sum;
+	int i, j;
 
 	if (s1 == NULL)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
-	while (s1[ind1] != '\0')
-		ind1++;
-	while (s2[ind2] != '\0')
-		ind2++;
-	sum = ind1 + ind2 + 1;
-	dest = malloc(sizeof(char) * sum);
-	if (dest == NULL)
+	i = j = 0;
+	while (s1[i] != '\0')
+		i++;
+	while (s2[j] != '\0')
+		j++;
+	con = malloc(sizeof(char) * (i + j + 1));
+	if (con == NULL)
 		return (NULL);
-	ind2 = 0, ind1 = 0;
-	while (s1[ind1] != '\0')
+	i = j = 0;
+	while (s1[i] != '\0')
 	{
-		dest[ind1] = s1[ind1];
-		ind1++;
+		con[i] = s1[i];
+		i++;
 	}
-	while (s2[ind2] != '\n')
+	while (s2[j] != '\0')
 	{
-		dest[ind1] = s2[ind2];
-		ind1++, ind2++;
+		con[i] = s2[j];
+		i++, j++;
 	}
-	dest[ind1] = '\0';
-	return (dest);
+	con[i] = '\0';
+	return (con);
 }
