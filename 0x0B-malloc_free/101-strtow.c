@@ -30,22 +30,17 @@ int cword(char *cw)
   */
 char **strtow(char *str)
 {
-	int ln = 0, i, k = 0, wc = 0, cc = 0, st, en;
+	int ln = 0, i, k = 0, ws = 0, cc = 0, st, en;
 
-	char *tp;
+	char *tp, **mt;
 
-	char **mt;
-
-	while (*str)
-	{
+	while (*(str++))
 		ln++;
-		str++;
-	}
-	int ws = cword(str);
+	ws = cword(str);
 
 	if (ws == 0)
 		return (NULL);
-	mt =(char **)  malloc(sizeof(char *) * (ws + 1));
+	mt = (char **)  malloc(sizeof(char *) * (ws + 1));
 	if (mt == NULL)
 		return (NULL);
 	for (i = 0; i <= ln; i++)
