@@ -1,8 +1,13 @@
 #include "main.h"
 #include <stdlib.h>
+/**
+  *malloc_checked- exit 98
+  *@b :intiger
+ *Return:pinter
+ */
 void *malloc_checked(unsigned int b)
 {
-	char *ptr;
+	void *ptr;
 
 	ptr = malloc(b);
 	if (ptr == NULL)
