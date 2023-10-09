@@ -1,0 +1,4 @@
+#ifndef FUNCTION_LIKE_M
+#defin FUNCTION_LIKE_M
+#defin ABS(x) ((x) < (0) ? -(x) : (x))
+#endef
