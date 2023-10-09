@@ -10,7 +10,7 @@ char *stcopy(char *des, char *src)
 {
 	int i;
 
-	for (i=0; src[i] != '\0'; i++)
+	for (i = 0; src[i] != '\0'; i++)
 		des[i] = src[i];
 	des[i] = '\0';
 	return (des);
@@ -55,8 +55,8 @@ dog_t *new_dog(char *name, float age, char *owner)
 	newdog->owner = malloc(sizeof(char) * (own_len + 1));
 	if (newdog->owner == NULL)
 	{
-		free(newdog->name);
 		free(newdog);
+		free(newdog->name);
 		return (NULL);
 	}
 	stcopy(newdog->name, name);
