@@ -1,4 +1,3 @@
-#include "function_pointers.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include "3-calc.h"
@@ -7,32 +6,33 @@
   *main- main
   *@argc: arg number
   *@argv: arguments
-  *return: 0
+  *Return: 0
   */
 int main(int argc, char *argv[])
 {
-	int n1, n2;
+	int n1, n2, rs;
 
-	char *opr;
+	int (*opf)(int, int);
+
 	if (argc != 4)
 	{
 		printf("Error\n");
-		exit (98);
+		exit(98);
 	}
 	n1 = atoi(argv[1]);
 	n2 = atoi(argv[3]);
-	opr = argv[2];
-	if (get_op_func(opr) == NULL || opr[1] != '\0')
+	opf = get_op_func(argv[2]);
+	if (opf == NULL)
 	{
 		printf("Error\n");
 		exit(99);
 	}
-	if ((*opr == '/' && n2 == 0) ||
-		    (*opr == '%' && n2 == 0))
-		{
-			printf("Error\n");
-			exit(100);
-		}
-	printf("%d\n", get_op_func(opr)(n1, n2));
+	if ((*argv[2] == '/' || *argv[2] == '%') && n2 == 0)
+	{
+		printf("Error\n");
+		exit(100);
+	}
+	rs = opf(n1, n2);
+	printf("%d\n", rs);
 	return (0);
 }
