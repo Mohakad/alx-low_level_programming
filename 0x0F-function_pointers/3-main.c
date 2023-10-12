@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "3-calc.h"
 #include <stddef.h>
+#include "function_pointers.h"
 /**
   *main- main
   *@argc: arg number
@@ -10,29 +11,29 @@
   */
 int main(int argc, char *argv[])
 {
-	int n1, n2, rs;
+	int num1, num2, calc;
 
-	int (*opf)(int, int);
+	int (*operator)(int, int);
 
 	if (argc != 4)
 	{
 		printf("Error\n");
 		exit(98);
 	}
-	n1 = atoi(argv[1]);
-	n2 = atoi(argv[3]);
-	opf = get_op_func(argv[2]);
-	if (opf == NULL)
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[3]);
+	operator = get_op_func(argv[2]);
+	if (operator == NULL)
 	{
 		printf("Error\n");
 		exit(99);
 	}
-	if ((*argv[2] == '/' || *argv[2] == '%') && n2 == 0)
+	if ((*argv[2] == '/' || *argv[2] == '%') && num2 == 0)
 	{
 		printf("Error\n");
 		exit(100);
 	}
-	rs = opf(n1, n2);
-	printf("%d\n", rs);
+	calc = operator(num1, num2);
+	printf("%d\n", calc);
 	return (0);
 }
