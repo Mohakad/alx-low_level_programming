@@ -7,16 +7,16 @@
   */
 int sum_them_all(const unsigned int n, ...)
 {
-	unsigned int ind;
-
 	int sum_all = 0;
 
 	va_list list_sum;
 
+	unsigned int ind;
+
 	va_start(list_sum, n);
 
 	for (ind = 0; ind < n; ind++)
-		sum_all += va_arg(list_sum, int);
+		sum_all = sum_all + va_arg(list_sum, int);
 	va_end(list_sum);
 	return (sum_all);
 }
