@@ -1,9 +1,12 @@
 #include "3-calc.h"
+#include "function_pointers.h"
+#include <stddef.h>
+#include <stdlib.h>
 /**
-  *op_add- returns the sum of a and b
+  *op_add- the sum of a and b
   *@a: integer
   *@b: int2
-  *Return: sum a+b
+  *Return:  a+b
   */
 int op_add(int a, int b)
 {

@@ -1,5 +1,6 @@
 #ifndef FUNTOP
 #define FUNTOP
+#include <stdlib.h>
 #include <stddef.h>
 void print_name(char *name, void (*f)(char *));
 int (*get_op_func(char *s))(int, int);
