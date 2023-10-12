@@ -9,11 +9,11 @@
   *@argv: arguments
   *Return: 0
   */
-int main(int __attribute__((__unused__)) argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	int num1, num2, calc;
 
-	int (*operator)(int, int);
+	char *operator;
 
 	if (argc != 4)
 	{
@@ -22,18 +22,18 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	}
 	num1 = atoi(argv[1]);
 	num2 = atoi(argv[3]);
-	operator = get_op_func(argv[2]);
-	if (operator == NULL)
+	operator = argv[2];
+	if (operator == NULL || operator[1] != '\0')
 	{
 		printf("Error\n");
 		exit(99);
 	}
-	if ((*argv[2] == '/' || *argv[2] == '%') && num2 == 0)
+	if ((*operator == '/' && num2 == 0) || (*operator == '%' && num2 == 0))
 	{
 		printf("Error\n");
 		exit(100);
 	}
-	calc = operator(num1, num2);
+	calc = get_op_func(operator)(num1, num2);
 	printf("%d\n", calc);
 	return (0);
 }
