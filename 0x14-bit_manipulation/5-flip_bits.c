@@ -1,20 +1,23 @@
 #include "main.h"
-/*
- * flip_bits-  flip to get from one number to another
+/**
+ * flip_bits- flips
  * @n: element
  * @m: power
- * Return:  the number of bits
+ * Return: the number of bits
  */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
 	unsigned long int xp = n ^ m;
 
-	unsigned int leng = 0;
+	int a, coun = 0;
 
-	while (xp)
+	unsigned long int curr;
+
+	for (a = 63; a >= 0; a--)
 	{
-		leng += xp & 1;
-		xp >>= 1;
+		curr = xp >> a;
+		if (curr & 1)
+			coun++;
 	}
-	return (leng);
+	return (coun);
 }
