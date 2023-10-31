@@ -1,87 +1,66 @@
 #include "main.h"
+#define BUFFER_SIZE 1024
 /**
-  *openfl- open file
-  *@f_from: source
-  *@f_to: destination
-  *@file_fr: string source
-  *@file_to: string dest
-  *Return: 0 or 98,99
-  */
-int openfl(int *f_from, int *f_to, char *file_fr, char *file_to)
-{
-	*f_from = open(file_fr, O_RDONLY);
-	if (*f_from == -1)
-	{
-		dprintf(2, "Error: Can't read from file %s\n", file_fr);
-		return (98);
-	}
-	*f_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC,
-			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
-	if (*f_to == -1)
-	{
-		dprintf(2, "Error: Can't write to %s\n", file_to);
-		return (99);
-	}
-	return (0);
-}
-/**
-  *fl_copy- copy from file to file
-  *@f_from: source
-  *@f_to: destination
-  *Return: 0 or 98 99
-  */
-int fl_copy(int f_from, int f_to)
-{
-	char buffer[1024];
+ *cpy - copies file to file
+ *@file_from: source
+ *@file_to: destination
+ *Return: 0
+ */
+int cpy(char *file_from, char *file_to)
+{ int rd, fd_from, fd_to, wr;
 
-	ssize_t brd, bw;
+	char buffer[BUFFER_SIZE];
 
-	while ((brd = read(f_from, buffer, 1024)) > 0)
+	fd_from = open(file_from, O_RDONLY);
+	if (fd_from == -1)
 	{
-		bw = write(f_to, buffer, brd);
-		if (bw != brd)
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
+		exit(98);
+	}
+	fd_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	if (fd_to == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
+		close(fd_from), exit(99);
+	}
+	while ((rd = read(fd_from, buffer, BUFFER_SIZE)) > 0)
+	{ wr = write(fd_to, buffer, rd);
+		if (wr == -1)
 		{
-			dprintf(2, "Error: Can't write to fd %d\n", f_to);
-			return (99);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
+			close(fd_from), close(fd_to);
+			exit(99);
 		}
 	}
-	if (brd == -1)
+	if (rd == -1)
 	{
-		dprintf(2, "Error: Can't read from fd %d\n", f_from);
-		return (98);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
+		close(fd_from), close(fd_to);
+		exit(98);
 	}
-	return (0);
-}
+	if (close(fd_from) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
+		exit(100);
+	}
+	if (close(fd_to) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
+		exit(100);
+	}
+	return (0); }
 /**
-  *main- copy b/n files
-  *@argc: length
-  *@argv: argument
+  *main - check and call
+  *@argc: length of arguments
+  *@argv: arguments
   *Return: 0 success
-  */
+ */
 int main(int argc, char *argv[])
 {
-	int f_from, f_to, status;
-
 	if (argc != 3)
 	{
-		dprintf(2, "Usage: %s file_fr file_to\n", argv[0]);
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	status = openfl(&f_from, &f_to, argv[1], argv[2]);
-	if (status != 0)
-		exit(status);
-	status = fl_copy(f_from, f_to);
-	if (status != 0)
-		exit(status);
-	if (close(f_from) == -1)
-	{
-		dprintf(2, "Error: Can't close fd %d\n", f_from);
-		exit(100);
-	}
-	if (close(f_to) == -1)
-	{
-		dprintf(2, "Error: Can't close fd %d\n", f_to);
-		exit(100);
-	}
-	return (0);
+	return (cpy(argv[1], argv[2]));
 }
