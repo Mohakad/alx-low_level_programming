@@ -1,5 +1,6 @@
 #ifndef MAINH
 #define MAINH
+#include <elf.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
