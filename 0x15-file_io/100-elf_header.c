@@ -74,7 +74,7 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		fprintf(stderr, "%s", "Error");
+		fprintf(stderr, "%s\n", "Error");
 		exit(98);
 	}
 	fd = open(argv[1], O_RDONLY);
