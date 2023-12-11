@@ -1,73 +1,72 @@
-#include <stdlib.h>
 #include "main.h"
+#include <stdlib.h>
 /**
-  *cword- count words
-  *@cw: argument
-  *Return: no of words
-  */
-int cword(char *cw)
-{
-	int ff = 0, wdd = 0;
-
-	int ii = 0;
-
-	for (ii = 0; cw[ii] != '\0'; ii++)
-	{
-		if (cw[ii] == ' ')
-			ff = 0;
-		else if (ff == 0)
-		{
-			ff = 1;
-			wdd++;
-		}
-	}
-	return (wdd);
-}
-/**
-  *strtow- strtrow
-  *@str: arguments
-  *Return: NULL or pointer
+  *strtow- separate words
+  *@str: argument
+  *Return: null or pointer
   */
 char **strtow(char *str)
 {
-	int ln = 0, i, k = 0, ws = 0, cc = 0, st, en;
+    char **newstr;
 
-	char *tp, **mt;
-
-	while (*(str++))
-		ln++;
-	ws = cword(str);
-
-	if (ws == 0)
-		return (NULL);
-	mt = (char **)  malloc(sizeof(char *) * (ws + 1));
-	if (mt == NULL)
-		return (NULL);
-	for (i = 0; i <= ln; i++)
-	{
-		if (str[i] == '\0' || str[i] == ' ')
-		{
-			if (cc)
-			{
-				en = i;
-				tp = (char *) malloc(sizeof(char) * (cc + 1));
-				if (tp == NULL)
-					return (NULL);
-				while (st < en)
-				{
-					*tp = str[st];
-					tp++;
-					st++;
-				}
-				*tp = '\0';
-				mt[k] = tp - cc;
-				k++;
-				cc = 0;
-			}
-		}
-		else if (cc++ == 0)
-			st = i;
-	}
-	mt[k] = NULL;
-	return (mt);
+    int wc = 0, i = 0, j = 0, k = 0, wl = 0, l = 0;
+    
+  if (str == NULL || *str == '\0')
+        return (NULL);
+    while (str[i] != '\0') {
+        if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
+            wc++;
+        i++;
+    }
+    
+  
+    newstr = (char **)malloc((wc + 1) * sizeof(char *));
+    if (newstr == NULL)
+        return (NULL);
+    
+    
+    for (i = 0; str[i] != '\0'; i++) {
+        if (str[i] != ' ') 
+            wl++;
+         else if (wl > 0) {
+            newstr[j] = (char *)malloc((wl + 1) * sizeof(char));
+            if (newstr[j] == NULL) {
+               
+                for (k = 0; k < j; k++) 
+                    free(newstr[k]);
+                
+                free(newstr);
+                return (NULL);
+            }
+            
+            
+            for (l = 0; l < wl; l++) {
+                newstr[j][l] = str[i - wl + l];
+            }
+            newstr[j][wl] = '\0';
+            j++;
+            wl = 0;
+        }
+    }
+    
+    if (wl > 0) {
+        newstr[j] = (char *)malloc((wl + 1) * sizeof(char));
+        if (newstr[j] == NULL) {
+            for (k = 0; k < j; k++) {
+                free(newstr[k]);
+            }
+            free(newstr);
+            return (NULL);
+        }
+        
+        for (l = 0; l < wl; l++) {
+            newstr[j][l] = str[i - wl + l];
+        }
+        newstr[j][wl] = '\0';
+        j++;
+    }
+    
+    newstr[j] = (NULL);
+    
+    return (newstr);
 }
