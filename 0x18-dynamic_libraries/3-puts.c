@@ -1,14 +1,11 @@
 #include "main.h"
+#include<stdio.h>
 /**
- * _puts - prints a string
- * @str: string to print
+ * _puts - Entry point
+ *@s : inputs
+ * Return: Always 0 (Success)
  */
-void _puts(char *str)
+void _puts(char *s)
 {
-	while (*str != '\0')
-	{
-		_putchar(*str);
-		str++;
-	}
-	_putchar('\n');
+	puts(s);
 }
